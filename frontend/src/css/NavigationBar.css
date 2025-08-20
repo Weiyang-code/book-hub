@@ -1,0 +1,32 @@
+* {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.btn:focus,
+.btn:active,
+.btn:focus:active {
+  border-color: transparent !important;
+}
+
+.btn-outline-light:hover {
+    background-color: transparent !important;
+    color: white !important;
+}
+
+.btn-hover {
+    transition: transform .2s;
+}
+
+.btn-hover:hover {
+    transform: translateY(-5px);
+}
+
+.navbar {
+    transition: 0.5s;
+}
+
+.navbar-scrolled {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
