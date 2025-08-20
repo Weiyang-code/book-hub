@@ -1,28 +1,40 @@
+import { useEffect, useRef } from "react";
 import "../css/NavigationBar.css";
+import { Link } from "react-router";
 
 function NavigationBar() {
+  const navbarRef = useRef(null);
 
-  const navbar = document.querySelector('.navbar');
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 10) {
+        navbarRef.current.classList.add("navbar-scrolled");
+      } else {
+        navbarRef.current.classList.remove("navbar-scrolled");
+      }
+    };
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY >= 10) {
-      navbar.classList.add('navbar-scrolled');
-    } 
-    else if (window.scrollY < 10) {
-      navbar.classList.remove('navbar-scrolled');
-    }
-  })
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <>
-      <nav className="navbar justify-content-between fixed-top p-3">
-        <a className="navbar-brand text-white">Book Hub</a>
-        <div className="justify-space-between">
-          <button class="btn fw-bold btn-hover text-white">Sign In</button>
-          <button class="btn btn-outline-light fw-bold btn-hover">Sign Up</button>
-        </div>
-      </nav>
-    </>
+    <nav
+      ref={navbarRef}
+      className="navbar justify-content-between fixed-top p-3"
+    >
+      <a className="navbar-brand text-white">Book Hub</a>
+      <div className="justify-space-between">
+        <Link to="/login">
+          <button className="btn fw-bold btn-hover text-white">Sign In</button>
+        </Link>
+        <Link to="/register">
+          <button className="btn btn-outline-light fw-bold btn-hover">
+            Sign Up
+          </button>
+        </Link>
+      </div>
+    </nav>
   );
 }
 
