@@ -1,28 +1,28 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../css/NavigationBar.css";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 function NavigationBar() {
   const navbarRef = useRef(null);
+  const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY >= 10) {
-        navbarRef.current.classList.add("navbar-scrolled");
-      } else {
-        navbarRef.current.classList.remove("navbar-scrolled");
-      }
+      setScrolled(window.scrollY >= 10);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isLanding = location.pathname === "/";
+  const navbarClass = `navbar justify-content-between fixed-top p-3 ${
+    !isLanding || scrolled ? "navbar-scrolled" : ""
+  }`;
+
   return (
-    <nav
-      ref={navbarRef}
-      className="navbar justify-content-between fixed-top p-3"
-    >
+    <nav ref={navbarRef} className={navbarClass}>
       <a className="navbar-brand text-white">Book Hub</a>
       <div className="justify-space-between">
         <Link to="/login" className="signin">

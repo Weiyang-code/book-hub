@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Footer from './components/Footer.jsx';
+import Home from './pages/Home.jsx'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function AppContent() {
       {!hideNav && <NavigationBar />}
 
       <Routes>
+        <Route path="/home" element={<Home />}/>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

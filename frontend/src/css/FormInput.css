@@ -1,0 +1,51 @@
+.text-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    background-color: transparent !important;
+    color: white !important;
+    border: none !important;
+    border-bottom: 1px solid white !important;
+    border-radius: 0px !important;
+}
+
+.form-control:focus {
+    box-shadow: none !important;
+}
+
+.form-control::placeholder {
+  color: white !important;
+  opacity: 0.5 !important; /* ensures it's fully white instead of faded */
+}
+
+.form-group label {
+    width: 200px;
+    /* fixed width so all labels align */
+    font-weight: normal;
+}
+
+.form-group span {
+    display: none !important;
+    font-size: 12px;
+    padding:3px;
+    color: red;
+}
+
+.form-group input:invalid[focused = "true"] ~ span {
+    display: block !important;
+}
+
+.form-group input:invalid[focused = "true"] {
+    border-bottom:1px solid red !important;
+}
+
+.login .form-group input:invalid[focused = "true"] ~ span {
+    display: none !important;
+}
+
+.login .form-group input:invalid[focused = "true"] {
+    border-bottom:1px solid white !important;
+}

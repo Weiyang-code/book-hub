@@ -7,6 +7,7 @@ h1 {
      backdrop-filter: blur(10px);
      border: 1px solid white !important;
      border-radius: 12px !important;
+     width:500px;
 }
 
 .register {
@@ -17,47 +18,20 @@ h1 {
     min-height: 100vh;
 }
 
-.text-input {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
 
-.form-control {
-    background-color: transparent !important;
-    color: white !important;
-    border: none !important;
-    border-bottom: 1px solid white !important;
-    border-radius: 0px !important;
-}
-
-.form-control:focus {
-    box-shadow: none !important;
-}
-
-.form-control::placeholder {
-  color: white !important;
-  opacity: 0.5 !important; /* ensures it's fully white instead of faded */
-}
-
-.form-group label {
-    width: 200px;
-    /* fixed width so all labels align */
-    font-weight: normal;
-}
 
 .form-group {
     margin-top: 10px;
 }
 
-.login {
+.link {
     cursor: pointer;
     transition: 0.5s;
     text-decoration: none;
     color:white;
 }
 
-.login:hover {
+.link:hover {
     text-decoration: underline;
 }
 

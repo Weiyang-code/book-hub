@@ -1,0 +1,16 @@
+.user {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #202020;
+}
+
+.home-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    width: auto;
+    background-color: #2f2f2f;
+}

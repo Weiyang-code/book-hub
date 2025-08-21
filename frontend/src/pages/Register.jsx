@@ -1,58 +1,94 @@
 import "../css/Register.css";
-import {Link} from 'react-router'
+import { Link } from "react-router";
+import FormInput from "../components/FormInput";
+import { useState } from "react";
 
 function Register() {
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const inputs = [
+    {
+      id: 1,
+      name: "name",
+      type: "text",
+      label: "Name",
+      placeholder: "Enter Name",
+      errorMessage:
+        "Please enter letters only. Numbers and symbols are not allowed",
+      required: true,
+      pattern: "^[A-Za-z ]+$",
+    },
+    {
+      id: 2,
+      name: "email",
+      type: "email",
+      label: "Email",
+      placeholder: "Enter Email",
+      errorMessage: "Enter valid email address",
+      required: true,
+    },
+    {
+      id: 3,
+      name: "password",
+      type: "password",
+      label: "Password",
+      placeholder: "Enter Password",
+      errorMessage:
+        "Password should be at least 12 characters long, and must have at least 1 upper case letter, 1 number, and 1 symbol",
+      required: true,
+      pattern: "^(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{12,}$",
+    },
+    {
+      id: 4,
+      name: "confirmPassword",
+      type: "password",
+      label: "Confirm Password",
+      placeholder: "Re-enter Password",
+      errorMessage: "Password does not match",
+      required: true,
+      pattern: values.password
+        ? `^${values.password.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`
+        : "",
+    },
+  ];
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
+  function handleChange(e) {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  }
+
+  console.log(values);
+
   return (
     <>
       <div className="register mb-5">
         <h1 className="text-white fw-bold mt-5">Welcome to Book Hub</h1>
-        <div className="">
-          <form className="card p-4">
-            <div className="form-group">
-              <label for="name">Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                placeholder="Enter name"
+          <form className="card p-4" onSubmit={handleSubmit}>
+            {inputs.map((input) => (
+              <FormInput
+                key={input.id}
+                {...input}
+                value={values[input.name]}
+                handleChange={handleChange}
+                errorMessage={input.errorMessage}
               />
-            </div>
-            <div className="form-group">
-              <label for="email">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="Enter email"
-              />
-            </div>
-            <div className="form-group">
-              <label for="password">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                placeholder="Enter password"
-              />
-            </div>
-            <div className="form-group">
-              <label for="confirm">Confirm Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="confirm"
-                placeholder="Re-enter password"
-              />
-            </div>
+            ))}
             <button type="submit" className="btn btn-light mt-4 text-black">
               Register
             </button>
           </form>
-        </div>
         <div className="fw-normal">
           Already have an account?
           <span>
-            <Link to="/login" className="login p-1">
+            <Link to="/login" className="link p-1">
               Login
             </Link>
           </span>
