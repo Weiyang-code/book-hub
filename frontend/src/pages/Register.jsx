@@ -4,8 +4,8 @@ import {Link} from 'react-router'
 function Register() {
   return (
     <>
-      <div className="register">
-        <h1 className="text-white fw-bold">Welcome to Book Hub</h1>
+      <div className="register mb-5">
+        <h1 className="text-white fw-bold mt-5">Welcome to Book Hub</h1>
         <div className="">
           <form className="card p-4">
             <div className="form-group">

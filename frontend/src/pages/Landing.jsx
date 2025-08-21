@@ -7,7 +7,7 @@ function Landing() {
   return (
     <>
         <div className="landing-card m-5">
-          <h1 className="fw-bold mb-3">
+          <h1 className="fw-bold mb-3 text-center">
             Book Hub: An All-in-One Central Repository for Books
           </h1>
           <p className="text-center">
