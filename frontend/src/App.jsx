@@ -1,22 +1,34 @@
 import NavigationBar from "./components/NavigationBar.jsx";
 import Landing from "./pages/Landing.jsx";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import Footer from './components/Footer.jsx'
+import Footer from './components/Footer.jsx';
 
 function App() {
   return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
+
+  const hideNav = location.pathname === "/login" || location.pathname === "/register";
+
+  return (
     <>
-      <BrowserRouter>
-      
+      {!hideNav && <NavigationBar />}
+
       <Routes>
-        <Route path="/" element={<><NavigationBar/> <Landing /></>} />
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-      <Footer/>
-      </BrowserRouter>
+
+      <Footer />
     </>
   );
 }

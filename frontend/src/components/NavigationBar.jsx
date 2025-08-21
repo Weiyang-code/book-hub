@@ -25,7 +25,7 @@ function NavigationBar() {
     >
       <a className="navbar-brand text-white">Book Hub</a>
       <div className="justify-space-between">
-        <Link to="/login">
+        <Link to="/login" className="signin">
           <button className="btn fw-bold btn-hover text-white">Sign In</button>
         </Link>
         <Link to="/register">

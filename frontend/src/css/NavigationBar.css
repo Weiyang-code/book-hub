@@ -3,15 +3,19 @@
     font-size: 20px;
 }
 
-.btn:focus,
-.btn:active,
-.btn:focus:active {
-  border-color: transparent !important;
+.signin .btn:focus {
+    border-color: transparent !important;
 }
+
+.btn-outline-light {
+    border: 1px solid white !important;
+}
+
 
 .btn-outline-light:hover {
     background-color: transparent !important;
     color: white !important;
+
 }
 
 .btn-hover {
@@ -27,6 +31,5 @@
 }
 
 .navbar-scrolled {
-    background-color: rgb(0,0,0,0.8)!important;
+    background-color: rgb(0, 0, 0, 0.8) !important;
 }
-
