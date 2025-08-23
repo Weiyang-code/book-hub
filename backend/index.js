@@ -1,17 +1,19 @@
 import express from "express";
 import mongoose from "mongoose";
-import user from './models/user.model.js'
+import user from "./models/user.model.js";
 import cors from "cors";
 
 const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 mongoose
   .connect(
@@ -29,12 +31,21 @@ mongoose
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
-app.post("/register", async (req,res) => {
+app.get("/register", async (req, res) => {
+  try {
+    const users = await user.find({});
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.post("/register", async (req, res) => {
   try {
     const newUser = await user.create(req.body);
-    res.status(200).json(newUser)
-    console.log("Succesfully sent data")
+    res.status(200).json(newUser);
+    console.log("Succesfully sent data");
   } catch (error) {
-    res.status(500).json({message: error.message})
+    res.status(500).json({ message: error.message });
   }
-})
+});
