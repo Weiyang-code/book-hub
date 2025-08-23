@@ -11,7 +11,7 @@ function FormInput(props) {
   return (
     <>
       <div className="form-group">
-        <label for={props.name}>{label}</label>
+        <label>{label}</label>
         <input
           className="form-control"
           {...inputProps}

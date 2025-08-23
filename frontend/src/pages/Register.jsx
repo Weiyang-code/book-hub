@@ -1,9 +1,11 @@
 import "../css/Register.css";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import FormInput from "../components/FormInput";
 import { useState } from "react";
 
 function Register() {
+  const navigate = useNavigate();
+
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -57,8 +59,27 @@ function Register() {
     },
   ];
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        }),
+      });
+
+      const data = await response.json();
+      alert("You have succesfully registered!");
+      navigate('/login');
+    } catch (error) {
+      console.error("Error:", error);
+    }
   }
 
   function handleChange(e) {
@@ -71,20 +92,20 @@ function Register() {
     <>
       <div className="register mb-5">
         <h1 className="text-white fw-bold mt-5">Welcome to Book Hub</h1>
-          <form className="card p-4" onSubmit={handleSubmit}>
-            {inputs.map((input) => (
-              <FormInput
-                key={input.id}
-                {...input}
-                value={values[input.name]}
-                handleChange={handleChange}
-                errorMessage={input.errorMessage}
-              />
-            ))}
-            <button type="submit" className="btn btn-light mt-4 text-black">
-              Register
-            </button>
-          </form>
+        <form className="card p-4" onSubmit={handleSubmit}>
+          {inputs.map((input) => (
+            <FormInput
+              key={input.id}
+              {...input}
+              value={values[input.name]}
+              handleChange={handleChange}
+              errorMessage={input.errorMessage}
+            />
+          ))}
+          <button type="submit" className="btn btn-light mt-4 text-black">
+            Register
+          </button>
+        </form>
         <div className="fw-normal">
           Already have an account?
           <span>
